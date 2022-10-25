@@ -3,7 +3,7 @@ Parameters:
   BucketName:
     Type: String
     Description: creating Bucket 
-    Default: priya6266
+    Default: rashi666
 Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
