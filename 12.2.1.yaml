@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Dynamo DB Table"
+Resources:
+  DynamoDB: 
+    Type: AWS::DynamoDB::Table
+    Properties:  
+      TableName: table
+      AttributeDefinitions: 
+        - AttributeName: Id
+          AttributeType: S
+        - AttributeName: Name
+          AttributeType: S
+      KeySchema: 
+        - AttributeName: Id
+          KeyType: HASH
+        - AttributeName: Name
+          KeyType: RANGE
+      ProvisionedThroughput:
+        ReadCapacityUnits: '5'
+        WriteCapacityUnits: '5'
+  DyanmoDBRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: DyanamoDB
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS: "*"
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::324320755747:policy/DynamoFullAccess
